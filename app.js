@@ -3,7 +3,8 @@ const translationsEn = {
     "Rating actuel:": "Current Rating:",
     "Moyenne du rating:": "Average Rating:",
     "Nombre de votants:": "Number of Voters:",
-    "Titre:": "Title:"
+    "Titre:": "Title:",
+    "Classement:": "Raking:"
   }
 
   const translationsFr = {
@@ -11,7 +12,8 @@ const translationsEn = {
     "Rating actuel:": "Note actuelle :",
     "Moyenne du rating:": "Moyenne des notes :",
     "Nombre de votants:": "Nombre de votants :",
-    "Titre:": "Titre :"
+    "Titre:": "Titre :",
+    "Classement:": "Classement:"
   }
 
 
