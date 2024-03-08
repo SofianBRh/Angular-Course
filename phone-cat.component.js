@@ -7,7 +7,6 @@ angular.module('movieApp').component('movieCat', {
       '<div class="flex items-center mt-4">' +
         '<label class="text-gray-600 mr-2">Note:</label>' +
         '<select ng-model="movie.rating" ng-options="i for i in [1,2,3,4,5]" ng-change="$ctrl.saveRating(movie)"></select>' +
-        '<span class="ml-2 text-gray-600">Rating actuel: {{ movie.rating }}</span>' +
         '<span class="ml-2 text-gray-600">Moyenne du rating: {{ movie.averageRating | number:1 }}</span>' +
       '</div>' +
     '</div>',
@@ -18,38 +17,31 @@ angular.module('movieApp').component('movieCat', {
     this.movies = [];
 
     this.saveRating = function(movie) {
-      localStorage.setItem(`movie_${movie.id}_rating`, movie.rating);
+      console.log(movie);
+      let ratings = JSON.parse(localStorage.getItem(`movie_${movie.id}_ratings`) || '[]');
+      ratings.push(movie.rating);
+      localStorage.setItem(`movie_${movie.id}_ratings`, JSON.stringify(ratings));
       this.calculateAverageRating(movie);
     };
-
+    
     this.loadRating = function(movieId) {
       return JSON.parse(localStorage.getItem(`movie_${movieId}_ratings`) || '[]');
     };
-
+    
     this.calculateAverageRating = function(movie) {
-      let totalRating = 0;
-      let totalVotes = 0;
-
-      this.movies.forEach(m => {
-        if (m.id === movie.id) {
-          totalRating += movie.rating;
-          totalVotes += movie.rating > 0 ? 1 : 0; 
-        } else {
-          totalRating += m.rating;
-          totalVotes += m.rating > 0 ? 1 : 0;
-        }
-      });
-
-
+      let ratings = this.loadRating(movie.id);
+      let totalRating = ratings.reduce((a, b) => a + b, 0);
+      let totalVotes = ratings.length;
       movie.averageRating = totalVotes > 0 ? totalRating / totalVotes : 0;
-      console.log(totalRating,totalVotes);
+      console.log(totalRating);
+      console.log(totalVotes);
     };
-
+    
     $http.get(url).then(response => {
       this.movies = response.data.results.map(movie => ({
         ...movie,
         rating: this.loadRating(movie.id) || 0,
-        averageRating: 0
+        averageRating: 0 
       }));
       console.log(this.movies[0].original_title);
     });
