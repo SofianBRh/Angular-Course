@@ -9,14 +9,11 @@
           <script src="phone-cat.component.js"></script>
           <script src="https://cdn.tailwindcss.com"></script> <!-- import du composant -->
           <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.4/angular-translate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate-loader-static-files/2.18.4/angular-translate-loader-static-files.min.js"></script>
+
           <!-- l'ordre est important! -->
           </head>
-<body ng-app="movieApp" ng-controller="MyController">
-  <p>{{greeting}}</p>
-  <p>{{farewell}}</p>
-  <button ng-click="changeLanguage('en')">English</button>
-  <button ng-click="changeLanguage('fr')">French</button>
-  <button ng-click="changeLanguage('es')">Spanish</button>
+<body ng-app="movieApp">
  <movie-cat>
     
  </movie-cat>
