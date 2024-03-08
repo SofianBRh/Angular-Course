@@ -1,13 +1,22 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
           <script src="app.js"></script> <!-- import de l'application -->
           <script src="phone-cat.component.js"></script>
           <script src="https://cdn.tailwindcss.com"></script> <!-- import du composant -->
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.18.4/angular-translate.min.js"></script>
           <!-- l'ordre est important! -->
           </head>
-<body ng-app="movieApp">
+<body ng-app="movieApp" ng-controller="MyController">
+  <p>{{greeting}}</p>
+  <p>{{farewell}}</p>
+  <button ng-click="changeLanguage('en')">English</button>
+  <button ng-click="changeLanguage('fr')">French</button>
+  <button ng-click="changeLanguage('es')">Spanish</button>
  <movie-cat>
     
  </movie-cat>

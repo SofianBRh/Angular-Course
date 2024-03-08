@@ -1,1 +1,1 @@
-angular.module('movieApp', []);
+angular.module('movieApp', ['pascalprecht.translate']);

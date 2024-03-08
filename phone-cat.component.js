@@ -23,7 +23,7 @@ angular.module('movieApp').component('movieCat', {
     };
 
     this.loadRating = function(movieId) {
-      return parseInt(localStorage.getItem(`movie_${movieId}_rating`));
+      return JSON.parse(localStorage.getItem(`movie_${movieId}_ratings`) || '[]');
     };
 
     this.calculateAverageRating = function(movie) {
